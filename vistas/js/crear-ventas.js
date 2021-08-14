@@ -940,7 +940,7 @@ $('#listaVale').on('change', function() {
 PRESUPUESTO
 =============================================*/
 $("#btn-presupuesto").on("click",function(){
-
+  var tipoFactura = $(this).attr("tipoFactura");
   /*=============================================
   GRABO EL PRESUPUESTO EN LA BD
   =============================================*/
@@ -970,13 +970,10 @@ $("#btn-presupuesto").on("click",function(){
     contentType: false,
     processData: false,
     success:function(respuesta){
-      
-
-        
-      url = "extensiones/tcpdf/pdf/ticket_presupuesto.php";
+           
+      url = "extensiones/tcpdf/pdf/"+tipoFactura+"_presupuesto.php";
       window.open(url, '_blank');
       window.location ="crear-venta" ;
-       
 
     }//FIN SUCCESS
 

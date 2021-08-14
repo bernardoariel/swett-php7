@@ -148,9 +148,9 @@
 
                 <!-- <input type="text" class="form-control inputCabecera" placeholder="NOMBRE...." id='cliente' name='cliente' value='' autocomplete="off"   readonly> -->
                  <input type="text" class="form-control inputCabecera" placeholder="NOMBRE...." id='cliente' name='cliente'  autocomplete="off"   value="CONSUMIDOR FINAL" readonly>
-
+                 
             </div>
-                    
+            
             <div class="col-xs-1" style="margin-left: 165px;">
 
                   <button type="button" class="btn btn-primary btn-block btnBuscarCliente inputCabecera" data-toggle="modal" data-target="#myModalClientes" style="margin-top:24px;width:70px" autofocus>Cliente</button>
@@ -200,8 +200,14 @@
         </div>
 
       </div>
+      
 
-       <button type="button" class="btn btn-success btn-block"  style="margin-top: 5px;" id="btn-presupuesto" disabled>Presupuesto</button>
+      <?php if ($_SESSION["PRESUPUESTO"]=="TRUE"): ?>
+        
+        <button type="button" class="btn btn-success btn-block"  style="margin-top: 5px;" id="btn-presupuesto" tipoFactura="<?php echo $_SESSION['TIPOFACTURA'];?>" disabled>Presupuesto</button>
+ 
+      <?php endif ?>
+       
 
     </div>
 

@@ -47,7 +47,7 @@ class ControladorCategorias{
 
 					$datos = array("categoria" => trim(strtoupper($_POST["nuevaCategoria"])),
 								   "movimiento" => $_POST["nuevoMovimiento"],
-								   "prefijo" => $_POST["nuevoPrefijo"],
+								   "prefijo"=>strtoupper($_POST["nuevoPrefijo"]),
 								   "numero" => $_POST["nuevoNumero"]
 								);
 

@@ -154,7 +154,7 @@
                      <button class="btn btn-info btnVerPagos" data-toggle="modal" data-target="#modalVerPagos" idVenta="'.$value["id"].'" title="ver pagos"><i class="fa fa-usd"></i></button>
                      
                    
-                     <button class="btn btn-info btnImprimirFactura" total="'.$value["total"].'" adeuda="'.$value["adeuda"].'" codigoVenta="'.$value["codigo"].'" title="imprimir ticket"><i class="fa fa-print"></i></button>';
+                     <button class="btn btn-info btnImprimirFactura" total="'.$value["total"].'" adeuda="'.$value["adeuda"].'" tipoFactura="'.$_SESSION["TIPOFACTURA"].'" codigoVenta="'.$value["codigo"].'" title="imprimir ticket"><i class="fa fa-print"></i></button>';
                       
 
                     if($_SESSION["usuario"]=="admin"){

@@ -120,7 +120,7 @@ $ventasCant = ControladorVentas::ctrContarVentas($item,$valor);
               echo '<td>'.$value['stock'].'</td>';
               echo '<td>'.$value['precio_venta'].'</td>';
               
-              echo "<td><div class='btn-group'><button class='btn btn-info btnImprimirItem' idItemPrint='".$value['id']."'><i class='fa fa-print'></i></button></div></td>";
+              echo "<td><div class='btn-group'><button class='btn btn-info btnImprimirItem' idItemPrint='".$value['id']."' tipoFactura='".$_SESSION["TIPOFACTURA"]."'><i class='fa fa-print'></i></button></div></td>";
                echo '</tr>';
               
 

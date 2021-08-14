@@ -37,6 +37,15 @@ class ControladorUsuarios{
 
                 $precioCosto = ControladorParametros::ctrMostrarParametros($item, $valor);
 				
+				$item = "nombre";
+             	$valor = "TICKET-FACTURA";
+
+                $parametroFacturaTicket = ControladorParametros::ctrMostrarParametros($item, $valor);
+
+				$item = "nombre";
+             	$valor = "PRESUPUESTO";
+
+                $presupuesto = ControladorParametros::ctrMostrarParametros($item, $valor);
 
 				if($respuesta["usuario"] == $_POST["ingUsuario"] && $respuesta["password"] == $encriptar){
 
@@ -50,6 +59,8 @@ class ControladorUsuarios{
 						$_SESSION["perfil"] = $respuesta["perfil"];
 						$_SESSION["rutaBK"] = $registro["valor"];
 						$_SESSION["BD"] = $bd['valor'];
+						$_SESSION["PRESUPUESTO"] = $presupuesto['valor'];
+						$_SESSION["TIPOFACTURA"] = strtolower($parametroFacturaTicket['valor']);
 						//COSTO
 						$_SESSION["PRECIO-COSTO"] = $precioCosto['valor'];
 						
@@ -104,6 +115,7 @@ class ControladorUsuarios{
 
 							    }
 							}else{
+								
 								echo '<script>
 
 										window.location = "respaldo";

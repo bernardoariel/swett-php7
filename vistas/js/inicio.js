@@ -8,6 +8,48 @@ CRGAR LOS DATOS JASON
         
 //     }
 // })btn-limpiar
+
+$.ajax({
+    url:"ajax/constantesPrograma.ajax.php",
+    success:function (respuesta){
+      let tipoFactura = respuesta
+      $('.tablaProductosInicioCJ').DataTable( {
+        "ajax": `ajax/datatable-productos-inicio.ajax.php?tipo=${tipoFactura}`,
+        "deferRender": true,
+        "retrieve": true,
+        "processing": true,
+        "pageLength": 8,
+        "language": {
+          "sProcessing":     "Procesando...",
+          "sLengthMenu":     "Mostrar _MENU_ registros",
+          "sZeroRecords":    "No se encontraron resultados",
+          "sEmptyTable":     "Ningún dato disponible en esta tabla",
+          "sInfo":           "Registros del _START_ al _END_ de un total de _TOTAL_",
+          "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+          "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+          "sInfoPostFix":    "",
+          "sSearch":         "Buscar:",
+          "sUrl":            "",
+          "sInfoThousands":  ",",
+          "sLoadingRecords": "Cargando...",
+          "oPaginate": {
+          "sFirst":    "Primero",
+          "sLast":     "Último",
+          "sNext":     "Siguiente",
+          "sPrevious": "Anterior"
+          },
+          "oAria": {
+            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+          }
+        }
+      });
+      
+        
+    }
+    
+})
+
 $("#btn-limpiar").click(function() {
 
   window.location = "pagos";
@@ -82,38 +124,7 @@ $('body').keydown(function (event) {
    }
 });
 
-$('.tablaProductosInicioCJ').DataTable( {
-  "ajax": "ajax/datatable-productos-inicio.ajax.php",
-  "deferRender": true,
-  "retrieve": true,
-  "processing": true,
-  "pageLength": 8,
-   "language": {
 
-      "sProcessing":     "Procesando...",
-      "sLengthMenu":     "Mostrar _MENU_ registros",
-      "sZeroRecords":    "No se encontraron resultados",
-      "sEmptyTable":     "Ningún dato disponible en esta tabla",
-      "sInfo":           "Registros del _START_ al _END_ de un total de _TOTAL_",
-      "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
-      "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-      "sInfoPostFix":    "",
-      "sSearch":         "Buscar:",
-      "sUrl":            "",
-      "sInfoThousands":  ",",
-      "sLoadingRecords": "Cargando...",
-      "oPaginate": {
-      "sFirst":    "Primero",
-      "sLast":     "Último",
-      "sNext":     "Siguiente",
-      "sPrevious": "Anterior"
-      },
-      "oAria": {
-        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-      }
-  }
-});
 $('.tablaProductosInicioNJ').DataTable( {
   // "ajax": "ajax/datatable-productos-inicio.ajax.php",
   "deferRender": true,
@@ -202,8 +213,9 @@ $(".tablaProductosInicio").on("click", ".btnImprimirItem", function(){
 
 
   var idItemPrint = $(this).attr("iditemprint");
-  console.log("idItemPrint", idItemPrint);
-  window.open("extensiones/tcpdf/pdf/ticket_presupuesto_unitario.php?item="+idItemPrint);
+  var tipoFactura = $(this).attr("tipoFactura");
+ 
+  window.open("extensiones/tcpdf/pdf/"+tipoFactura+"_presupuesto_unitario.php?item="+idItemPrint);
   
   })
 /*=============================================

@@ -6,7 +6,7 @@ $orden = "id";
 
 $productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
 
- ?>
+?>
 
 <div class="row"> 
   

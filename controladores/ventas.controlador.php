@@ -346,7 +346,7 @@ class ControladorVentas{
 				  }
 
 				  echo '<script>
-					window.open("extensiones/tcpdf/pdf/ticket.php?codigo='.$_POST["nuevaVentaForm"].'","FACTURA",1,2);
+					window.open("extensiones/tcpdf/pdf/'.$_SESSION["TIPOFACTURA"].'.php?codigo='.$_POST["nuevaVentaForm"].'","FACTURA",1,2);
 				  window.location = "ventas";</script>';
 
 

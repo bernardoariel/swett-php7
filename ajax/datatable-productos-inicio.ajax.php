@@ -17,13 +17,14 @@ class TablaProductosInicial{
 		$orden = "id";
 		$productos = ControladorProductos::ctrMostrarProductosFormateados($item,$valor,$orden);
 		
+	
 
 		$datosJson = '{
 		  "data": [';
 
 		for($i = 0; $i < count($productos); $i++){
 
-		   $botones ="<button class='btn btn-info btnImprimirItem' idItemPrint='".$productos[$i]['id']."'><i class='fa fa-print'></i></button>";
+		   $botones ="<button class='btn btn-info btnImprimirItem' tipoFactura='". $_GET['tipo']."' idItemPrint='".$productos[$i]['id']."'><i class='fa fa-print'></i></button>";
 
 		  	$datosJson .='[
 		      "'.($i+1).'",

@@ -16,57 +16,54 @@ require_once "../../../controladores/empresa.controlador.php";
 require_once "../../../modelos/empresa.modelo.php";
 class imprimirFactura{
 
-public $codigo;
+	public $codigo;
 
-public function traerImpresionFactura(){
+	public function traerImpresionFactura(){
 
-//TRAEMOS LA INFORMACIÓN DE LA VENTA
+		//TRAEMOS LA INFORMACIÓN DE LA VENTA
 
-$itemVenta = "codigo";
-$valorVenta = $this->codigo;
+		$itemVenta = "codigo";
+		$valorVenta = $this->codigo;
 
-$respuestaVenta = ControladorVentas::ctrMostrarVentas($itemVenta, $valorVenta);
+		$respuestaVenta = ControladorVentas::ctrMostrarVentas($itemVenta, $valorVenta);
 
-$fecha = explode("-", $respuestaVenta["fecha"]);
-$fecha = $fecha[2]."-".$fecha[1]."-".$fecha[0];
-$productos = json_decode($respuestaVenta["productos"], true);
-$adeuda = number_format($respuestaVenta["adeuda"],2);
-$impuesto = number_format($respuestaVenta["impuesto"],2);
-$total = number_format($respuestaVenta["total"],2);
+		$fecha = explode("-", $respuestaVenta["fecha"]);
+		$fecha = $fecha[2]."-".$fecha[1]."-".$fecha[0];
+		$productos = json_decode($respuestaVenta["productos"], true);
+		$adeuda = number_format($respuestaVenta["adeuda"],2);
+		$impuesto = number_format($respuestaVenta["impuesto"],2);
+		$total = number_format($respuestaVenta["total"],2);
 
-// if($respuestaVenta['metodo_pago']=='EFECTIVO'){
-// 		$tipoPago =
-// }
-//TRAEMOS LA INFORMACIÓN DEL CLIENTE
+		//TRAEMOS LA INFORMACIÓN DEL CLIENTE
 
-$itemCliente = "id";
-$valorCliente = $respuestaVenta["id_cliente"];
+		$itemCliente = "id";
+		$valorCliente = $respuestaVenta["id_cliente"];
 
-$respuestaCliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
+		$respuestaCliente = ControladorClientes::ctrMostrarClientes($itemCliente, $valorCliente);
 
-//TRAEMOS LA INFORMACIÓN DEL VENDEDOR
+		//TRAEMOS LA INFORMACIÓN DEL VENDEDOR
 
-$itemVendedor = "id";
-$valorVendedor = $respuestaVenta["id_vendedor"];
+		$itemVendedor = "id";
+		$valorVendedor = $respuestaVenta["id_vendedor"];
 
-$respuestaVendedor = ControladorUsuarios::ctrMostrarUsuarios($itemVendedor, $valorVendedor);
+		$respuestaVendedor = ControladorUsuarios::ctrMostrarUsuarios($itemVendedor, $valorVendedor);
 
-//TRAEMOS LA INFORMACIÓN DE LA EMPRESA
-$itemEmpresa = "id";
+		//TRAEMOS LA INFORMACIÓN DE LA EMPRESA
+		$itemEmpresa = "id";
 
-$valorEmpresa = 1;
-$respuestaEmpresa = ControladorEmpresa::ctrMostrarEmpresa($itemEmpresa, $valorEmpresa);
+		$valorEmpresa = 1;
+		$respuestaEmpresa = ControladorEmpresa::ctrMostrarEmpresa($itemEmpresa, $valorEmpresa);
 
-//REQUERIMOS LA CLASE TCPDF
+		//REQUERIMOS LA CLASE TCPDF
 
-require_once('tcpdf_include.php');
+		require_once('tcpdf_include.php');
 
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-$pdf->SetPrintHeader(false);
-$pdf->SetPrintFooter(false);
-$pdf->startPageGroup();
+		$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+		$pdf->SetPrintHeader(false);
+		$pdf->SetPrintFooter(false);
+		$pdf->startPageGroup();
 
-$pdf->AddPage();
+		$pdf->AddPage();
 
 // ---------------------------------------------------------
 
@@ -78,7 +75,7 @@ $bloque1 = <<<EOF
 			
 			<td style="width:150px"><img src="../../../$respuestaEmpresa[fotorecibo]"></td>
 
-			<td style="background-color:white; width:140px">
+			<td style="background-color:white; width:240px">
 				
 				<div style="font-size:8px; text-align:right; line-height:15px;">
 					
@@ -88,14 +85,6 @@ $bloque1 = <<<EOF
 					<br>
 					$respuestaEmpresa[direccion]
 
-				</div>
-
-			</td>
-
-			<td style="background-color:white; width:140px">
-
-				<div style="font-size:8px; text-align:right; line-height:15px;">
-					
 					<br>
 					Teléfono: $respuestaEmpresa[telefono]
 					
@@ -103,9 +92,10 @@ $bloque1 = <<<EOF
 					$respuestaEmpresa[email]
 
 				</div>
-				
+
 			</td>
 
+			
 			<td style="background-color:white; width:110px; text-align:center; color:red"><br><br>FACTURA N.<br>$valorVenta</td>
 
 		</tr>
@@ -305,7 +295,7 @@ $pdf->writeHTML($bloque5, false, false, false, false, '');
 
 // ---------------------------------------------------------
 //SALIDA DEL ARCHIVO 
-
+ob_end_clean();
 $pdf->Output('factura.pdf');
 
 }

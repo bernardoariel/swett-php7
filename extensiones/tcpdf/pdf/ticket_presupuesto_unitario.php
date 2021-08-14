@@ -15,33 +15,29 @@ public function traerImpresionFactura(){
 
 //TRAEMOS LA INFORMACIÓN DE LA VENTA
 
+$item = "id";
+$valor = $_GET['item'];
+$orden = "id";
+$productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
 
-
-  $item = "id";
-  $valor = $_GET['item'];
- $orden = "id";
- $productos = ControladorProductos::ctrMostrarProductos($item, $valor, $orden);
-  
-
-
-
- $fecha = date("d-m-Y");
+$fecha = date("d-m-Y");
 
 //TRAEMOS LA INFORMACIÓN DE LA EMPRESA
 $itemEmpresa = "id";
 
 $valorEmpresa = 1;
 $respuestaEmpresa = ControladorEmpresa::ctrMostrarEmpresa($itemEmpresa, $valorEmpresa);
-
+$altura = 100;
 //REQUERIMOS LA CLASE TCPDF
 
 require_once('tcpdf_include.php');
-
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+$medidas = array(76, $altura );
+$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, $medidas, true, 'UTF-8', false);
+$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
 $pdf->SetPrintHeader(false);
 $pdf->SetPrintFooter(false);
 
-$pdf->SetFont("", "", 20, "", "false");
+$pdf->SetFont("", "", 18, "", "false");
 $pdf->AddPage();
 
 
@@ -50,7 +46,7 @@ $pdf->AddPage();
 
 $bloque1 = <<<EOF
 
-	 <table width="40%" style="font-size:10px">
+	 <table style="font-size:10px">
          
      
           
@@ -74,7 +70,7 @@ $bloque1 = <<<EOF
 
           <tr>
 
-            <td>==================================</td>
+            <td>================================</td>
             
           </tr>
           
@@ -86,7 +82,7 @@ $bloque1 = <<<EOF
 
           <tr>
 
-            <td>==================================</td>
+            <td>================================</td>
             
           </tr> 
 
@@ -100,7 +96,7 @@ $bloque1 = <<<EOF
 
           <tr>
 
-            <td>==================================</td>
+            <td>================================</td>
             
           </tr> 
           <tr>
@@ -111,7 +107,7 @@ $bloque1 = <<<EOF
 
           <tr>
 
-            <td>==================================</td>
+            <td>================================</td>
             
           </tr> 
 
@@ -125,7 +121,7 @@ $pdf->writeHTML($bloque1, false, false, false, false, '');
 
 $bloque2 = <<<EOF
 	
-	<table width="40%" style="font-size:7px">
+	<table  style="font-size:7px">
             
             <tr>
 
@@ -138,7 +134,7 @@ $bloque2 = <<<EOF
 
             <tr>
 
-              <td colspan="5">-------------------------------------------------------------------------------------</td>
+              <td colspan="5">--------------------------------------------------------------------------------</td>
             
             </tr>
 	</table>
@@ -177,13 +173,13 @@ $pdf->writeHTML($bloque3, false, false, false, false, '');
 
 $bloque5 = <<<EOF
   
-  <table width="40%" style="font-size:10px">
+  <table style="font-size:10px">
             
             
 
               <tr>
 
-            <td>==================================</td>
+            <td>================================</td>
             
           </tr> 
 

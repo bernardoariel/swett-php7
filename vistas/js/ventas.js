@@ -899,13 +899,9 @@ IMPRIMIR FACTURA
 $(".tablas").on("click", ".btnImprimirFactura", function(){
 
 	var codigoVenta = $(this).attr("codigoVenta");
+	var tipoFactura = $(this).attr("tipoFactura");
 	
-	
-
-	window.open("extensiones/tcpdf/pdf/ticket.php?codigo="+codigoVenta, "_blank");
-
-	
-	
+	window.open("extensiones/tcpdf/pdf/"+tipoFactura+".php?codigo="+codigoVenta, "_blank");
 
 })
 
