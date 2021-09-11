@@ -163,10 +163,11 @@ $bloque3 = <<<EOF
 	<table style="font-size:10px; padding:5px 10px;">
 
 		<tr>
-		
-		<td style="border: 1px solid #666; background-color:white; width:260px; text-align:center">Producto</td>
-		<td style="border: 1px solid #666; background-color:white; width:80px; text-align:center">Cantidad</td>
-		<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">Valor Unit.</td>
+		<td style="border: 1px solid #666; background-color:white; width:50px; text-align:center">cant.</td>
+		<td style="border: 1px solid #666; background-color:white; width:80px; text-align:center">codigo</td>
+		<td style="border: 1px solid #666; background-color:white; width:150px; text-align:center">Producto</td>
+		<td style="border: 1px solid #666; background-color:white; width:80px; text-align:center">Valor Unit.</td>
+		<td style="border: 1px solid #666; background-color:white; width:80px; text-align:center">Desc.</td>
 		<td style="border: 1px solid #666; background-color:white; width:100px; text-align:center">Valor Total</td>
 
 		</tr>
@@ -181,8 +182,8 @@ $pdf->writeHTML($bloque3, false, false, false, false, '');
 
 foreach ($productos as $key => $item) {
 
-$itemProducto = "descripcion";
-$valorProducto = $item["descripcion"];
+$itemProducto = "id";
+$valorProducto = $item["id"];
 $orden = null;
 
 $respuestaProducto = ControladorProductos::ctrMostrarProductos($itemProducto, $valorProducto, $orden);
@@ -197,17 +198,23 @@ $bloque4 = <<<EOF
 
 		<tr>
 			
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center">
-				$item[descripcion]
-			</td>
-
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:center">
+			<td style="border: 1px solid #666; color:#333; background-color:white; width:50px; text-align:center">
 				$item[cantidad]
 			</td>
-
-			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">$ 
-				$valorUnitario
+			<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:center">
+				$item[codigo]
 			</td>
+			<td style="border: 1px solid #666; color:#333; background-color:white; width:150px; text-align:center">
+				$item[descripcion]
+			</td>
+			<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:center">$ 
+			$valorUnitario
+			</td>
+			<td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:center">
+				$item[descuento]
+			</td>
+
+
 
 			<td style="border: 1px solid #666; color:#333; background-color:white; width:100px; text-align:center">$ 
 				$precioTotal

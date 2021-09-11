@@ -1,3 +1,14 @@
+/*=============================================
+CRGAR LOS DATOS JASON
+=============================================*/
+$.ajax({
+    url:"ajax/datatable-clientes.ajax.php",
+    success:function (respuesta){
+        console.log("respuesta", respuesta);
+        
+    }
+})
+
 $('.tablaClientesCJ').DataTable( {
         "ajax": "ajax/datatable-clientes.ajax.php",
         "deferRender": true,

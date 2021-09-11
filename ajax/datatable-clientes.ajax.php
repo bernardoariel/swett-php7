@@ -19,22 +19,27 @@ class TablaClientes{
 		  "data": [';
 
 		for($i = 0; $i < count($clientes); $i++){
-	
-		  	$botones ="<div class='btn-group'><button class='btn btn-warning btnEditarCliente' data-toggle='modal' data-target='#modalEditarCliente' idCliente='".$clientes[$i]['id']."'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarCliente' idCliente='".$clientes[$i]['id']."'><i class='fa fa-times'></i></button></div>";
+			
+			if($clientes[$i]['id']!=1){
 
-		  	$datosJson .='[
-		      "'.($i+1).'",
-		      "'.$clientes[$i]['nombre'].'",
-		      "'.$clientes[$i]['direccion'].'",
-		      "'.$clientes[$i]['telefono'].'",
-			  "'.$clientes[$i]['dni'].'",
-			  "'.$clientes[$i]['cuit'].'",
-			  "'.$clientes[$i]['idivacliente'].'",
-			  "'.$clientes[$i]['email'].'",
-			  "'.$clientes[$i]['idtipocliente'].'",
-			  "'.$clientes[$i]['obs'].'",
-		      "'.$botones.'"
-		    ],';
+				$botones ="<div class='btn-group'><button class='btn btn-warning btnEditarCliente' data-toggle='modal' data-target='#modalEditarCliente' idCliente='".$clientes[$i]['id']."'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarCliente' idCliente='".$clientes[$i]['id']."'><i class='fa fa-times'></i></button></div>";
+
+				$datosJson .='[
+				"'.($i+1).'",
+				"'.$clientes[$i]['nombre'].'",
+				"'.$clientes[$i]['direccion'].'",
+				"'.$clientes[$i]['telefono'].'",
+				"'.$clientes[$i]['dni'].'",
+				"'.$clientes[$i]['cuit'].'",
+				"'.$clientes[$i]['idivacliente'].'",
+				"'.$clientes[$i]['email'].'",
+				"'.$clientes[$i]['idtipocliente'].'",
+				"'.$clientes[$i]['obs'].'",
+				"'.$botones.'"
+				],';
+				
+			}
+		  	
 		
 		}
 
@@ -43,8 +48,8 @@ class TablaClientes{
 		 $datosJson .=   '] 
 
 		 }';
-		
-		echo $datosJson;
+		 
+		 echo $datosJson;
 	}
 
 
