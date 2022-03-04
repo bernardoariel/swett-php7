@@ -1,22 +1,15 @@
 <?php
 switch ($_SESSION['usuario']) {
   case 'admin':
-    # code...
     break;
-  case 'vendedor':
-    # code...
-    break;
-  case 'superadmin2':
-    # code...
-    break;
-  
+  case 'stock':
+      break; 
   default:
-    # code...
-    include("salir.php");
+    include "404.php";
+    exit;
     break;
 }
-
-;?>
+?>
 
 <div class="content-wrapper">
 
@@ -376,6 +369,7 @@ MODAL EDITAR PRODUCTO
             <div class="form-group">
               
               <div class="input-group">
+              <input type="hidden" name="idProductoEditar" id="idProductoEditar">
               
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
 

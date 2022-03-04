@@ -51,5 +51,64 @@ class ControladorEnlace{
 	
 	}
 	
+	/*=============================================
+	VER ULTIMA ACTUALIZACION
+	=============================================*/
+
+	static public function ctrcargarTabla($tabla,$data){
+
+		$respuesta = ModeloEnlace::mdlcargarTabla($tabla,$data);
+
+		return $respuesta;
+	
+	}
+
+	/*=============================================
+	VER ULTIMA ACTUALIZACION
+	=============================================*/
+
+	static public function ctrActualizacionServer($tabla,$datos){
+
+		$respuesta = ModeloEnlace::mdlActualizacionServer($tabla,$datos);
+
+		return $respuesta;
+	
+	}
+	/*=============================================
+	VER ULTIMA ACTUALIZACION
+	=============================================*/
+
+	static public function ctrActualizarServerUltimos($tabla,$datos){
+
+		$respuesta = ModeloEnlace::mdlActualizarServerUltimos($tabla,$datos);
+
+		return $respuesta;
+	
+	}
+
+	/*=============================================
+	BUSCAR ULTIMO ID
+	=============================================*/
+
+	static public function ctrUltimoId($tabla,$campo){
+
+		$respuesta = ModeloEnlace::mdlUltimoId($tabla,$campo);
+
+		return $respuesta;
+	
+	}
+
+	/*=============================================
+	elimino la fecha actual
+	=============================================*/
+
+	static public function ctrEliminarRegistroFecha($tabla,$fecha){
+
+		$respuesta = ModeloEnlace::mdlEliminarRegistroFecha($tabla,$fecha);
+
+		 return $respuesta;
+	
+	}
+	
 
 }

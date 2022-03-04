@@ -74,6 +74,93 @@ class AjaxProductos{
 
   }
 
+  /*=============================================
+  GENERAR CÓDIGO A PARTIR DE ID CATEGORIA
+  =============================================*/
+  public $codigoValue;
+  public $nombreValue;
+  public function ajaxBsqCodigoCrear(){
+
+    $item = "codigo";
+    $valor = $this->codigoValue;
+
+    //si estoy creando
+    $codigoRepetido = ModeloProductos::mdlMostrarProductosCount('productos', $item, $valor);
+     
+    if($codigoRepetido==0){//si el array que devuelve codigo esta vacio
+
+      echo 'success'; 
+        
+    }else{
+
+      echo 'nuevoCodigo';
+  
+    }
+
+  }
+  public function ajaxBsqNombreCrear(){
+
+    $item = "nombre";
+    $valor = $this->nombreValue;
+
+    //si estoy creando
+    $nombreRepetido = ModeloProductos::mdlMostrarProductosCount('productos', $item, $valor);
+     
+    if($nombreRepetido==0){//si el array que devuelve codigo esta vacio
+
+      echo 'success'; 
+        
+    }else{
+
+      echo 'nuevoNombre';
+  
+    }
+
+  }
+  public function ajaxBsqCodigoEditar(){
+
+    $item = "codigo";
+    $valor = $this->codigoValue;
+
+    //si estoy creando
+    $codigoRepetido = ModeloProductos::mdlMostrarProductosCount('productos', $item, $valor);
+     
+    if($codigoRepetido<=1){//si el array que devuelve codigo esta vacio
+
+      echo 'success'; 
+        
+    }else{
+
+      echo 'editarCodigo';
+  
+    }
+
+  }
+  public function ajaxBsqNombreEditar(){
+
+    $item = "nombre";
+    $valor = $this->nombreValue;
+
+    //si estoy creando
+    $nombreRepetido = ModeloProductos::mdlMostrarProductosCount('productos', $item, $valor);
+     
+    if($nombreRepetido<=1){//si el array que devuelve codigo esta vacio
+
+      echo 'success'; 
+        
+    }else{
+
+      echo 'editarNombre';
+  
+    }
+
+  }
+ 
+
+  	
+
+ 
+
 }
 
 
@@ -123,6 +210,43 @@ if(isset($_POST["nombreProducto"])){
   $traerProductos -> ajaxEditarProducto();
 
 }
+/*=============================================
+BUSCA CODIGO REPETIDO NUEVO
+=============================================*/ 
+
+if(isset($_POST["bsqCodigoCrear"])){
+
+  $traerProductos = new AjaxProductos();
+  $traerProductos -> codigoValue = $_POST["codigo"];
+
+  $traerProductos -> ajaxBsqCodigoCrear();
+
+}
+if(isset($_POST["bsqNombreCrear"])){
+
+  $traerProductos = new AjaxProductos();
+  $traerProductos -> nombreValue = $_POST["nombre"];
+
+  $traerProductos -> ajaxBsqNombreCrear();
+
+}
+if(isset($_POST["bsqCodigoEditar"])){
+
+  $traerProductos = new AjaxProductos();
+  $traerProductos -> codigoValue = $_POST["codigo"];
+
+  $traerProductos -> ajaxBsqCodigoEditar();
+
+}
+if(isset($_POST["bsqNombreEditar"])){
+
+  $traerProductos = new AjaxProductos();
+  $traerProductos -> nombreValue = $_POST["nombre"];
+
+  $traerProductos -> ajaxBsqNombreEditar();
+
+}
+
 
 
 

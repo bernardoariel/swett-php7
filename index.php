@@ -17,6 +17,8 @@ require_once "controladores/empresa.controlador.php";
 require_once "controladores/comprobantes.controlador.php";
 require_once "controladores/vales.controlador.php";
 require_once "controladores/parametros.controlador.php";
+require_once "controladores/backups.controlador.php";
+require_once "controladores/tablas.local.controlador.php";
 
 require_once "modelos/empresa.modelo.php";
 require_once "modelos/caja.modelo.php";
@@ -33,6 +35,8 @@ require_once "modelos/comprobantes.modelo.php";
 require_once "modelos/vales.modelo.php";
 require_once "modelos/presupuesto.modelo.php";
 require_once "modelos/parametros.modelo.php";
+require_once "modelos/backups.modelo.php";
+require_once "modelos/tablas.local.modelo.php";
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();
 

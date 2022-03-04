@@ -322,12 +322,19 @@ $ventasCant = ControladorVentas::ctrContarVentas($item,$valor);
 
 <div class="col-lg-4 col-xs-4">
 
-    <div class="small-box bg-red">
+    <div class="small-box <?php echo $colorCaja; ?>">
       
       <div class="inner">
       
          <p>Copia de Seguridad</p>
-       <small> <p id="ultimaBd">Ultima: <button class="btn-link" id="verUltimaBd">Ver</button> </p></small>
+       <small> <p id="ultimaBd">
+          <?php if(isset($ultimaFechaActualizacion['fecha'])){
+                   echo 'Ultima: ' . $ultimaFechaActualizacion['fecha'];}
+               else{
+                  echo 'NO SE PUEDE CONECTAR A LA BD';
+               }
+          ?> 
+       </p></small>
       
       </div>
       
@@ -337,7 +344,7 @@ $ventasCant = ControladorVentas::ctrContarVentas($item,$valor);
       
       </div>
       
-      <a href="update" class="small-box-footer">
+      <a href="index.php?ruta=serverbk&actualizarServer=1" class="small-box-footer">
         
         Realice su copia AHORA <i class="fa fa-arrow-circle-right"></i>
       

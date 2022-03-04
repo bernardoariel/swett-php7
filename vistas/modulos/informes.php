@@ -1,4 +1,16 @@
 <?php
+switch ($_SESSION['usuario']) {
+  case 'admin':
+    break;
+
+  default:
+    include "404.php";
+    exit;
+    break;
+}
+?>
+
+<?php
   // FECHA DEL DIA DE HOY
   $fecha=date('Y-m-d');
   if(isset($_POST['fecha1'])){

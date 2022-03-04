@@ -36,9 +36,9 @@
             
             <div class="box-body">
                           
-            <iframe width="380" height="200" src="https://www.youtube.com/embed/1zKDM_DjQAo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="380" height="200" src="https://www.youtube.com/6da502d6-d278-4404-b1b6-07bbdad86831" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-             <a href="https://youtu.be/1zKDM_DjQAo" target="_blank">Link del Video</a>
+
     
             </div>
 

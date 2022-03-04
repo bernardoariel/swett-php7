@@ -655,12 +655,13 @@ class ModeloVentas{
 
 	static public function mdlbKVentas($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(`tabla`,`tipo`,`datos`,`usuario`) VALUES
-					 (:tabla,:tipo,:datos,:usuario)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(tabla,tipo,datos_viejos,datos_nuevos, usuario) VALUES
+					 (:tabla,:tipo,:datos_viejos,:datos_nuevos,:usuario)");
 
 		$stmt->bindParam(":tabla", $datos["tabla"], PDO::PARAM_STR);
 		$stmt->bindParam(":tipo", $datos["tipo"], PDO::PARAM_STR);
-		$stmt->bindParam(":datos", $datos["datos"], PDO::PARAM_STR);
+		$stmt->bindParam(":datos_viejos", $datos["datos_viejos"], PDO::PARAM_STR);
+		$stmt->bindParam(":datos_nuevos", $datos["datos_nuevos"], PDO::PARAM_STR);
 		$stmt->bindParam(":usuario", $datos["usuario"], PDO::PARAM_STR);
 	   
 		if($stmt->execute()){

@@ -1495,30 +1495,32 @@ static public function ctrRealizarPagoVenta(){
 		
 	}
 static public function ctrbKVentas($tabla, $item, $valor,$tipo){
-
+			//tomo los datos de los viejos
+			$datos_nuevos = $datos = array($item => $valor);
 			#TRAEMOS LOS DATOS DE IDESCRIBANO
 			
 			$respuesta = ControladorVentas::ctrMostrarVentas($item, $valor);
 
-			$valor='[{"id":"'.$respuesta[0].'",
-					  "fecha":"'.$respuesta[1].'",
-					  "codigo":"'.$respuesta[2].'",
-					  "id_cliente":"'.$respuesta[3].'",
-					  "id_vendedor":"'.$respuesta[4].'",
-					  "productos":"'.$respuesta[5].'",
-					  "impuesto":"'.$respuesta[6].'",
-					  "impuesto":"'.$respuesta[7].'",
-					  "total":"'.$respuesta[8].'",
-					  "adeuda":"'.$respuesta[9].'",
-					  "metodo_pago":"'.$respuesta[10].'",
-					  "fechapago":"'.$respuesta[11].'",
-					  "referenciapago":"'.$respuesta[12].'",
-					  "observaciones":"'.$respuesta[13].'"}]';
+			$datos_viejos=array(
+				"id"=>$respuesta["id"],
+				"fecha"=>$respuesta["fecha"],
+				"codigo"=>$respuesta["codigo"],
+				"id_cliente"=>$respuesta["id_cliente"],
+				"id_vendedor"=>$respuesta["id_vendedor"],
+				"productos"=>$respuesta["productos"],
+				"impuesto"=>$respuesta["impuesto"],
+				"total"=>$respuesta["total"],
+				"adeuda"=>$respuesta["adeuda"],
+				"metodo_pago"=>$respuesta["metodo_pago"],
+				"fechapago"=>$respuesta["fechapago"],
+				"referenciapago"=>$respuesta["referenciapago"],
+				"observaciones"=>$respuesta["observaciones"]);
 
 	        $datos = array("tabla"=>"ventas",
 		   				    "tipo"=>$tipo,
-				            "datos"=>$valor,
-				        	"usuario"=>$_SESSION['nombre']);
+							"datos_viejos"=>json_encode($datos_viejos),
+							"datos_nuevos"=>json_encode($datos_nuevos),
+							"usuario"=>$_SESSION['nombre']);
 
 	        $tabla = "backup";
 

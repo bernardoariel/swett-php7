@@ -1,22 +1,4 @@
-<?php
-switch ($_SESSION['usuario']) {
-  case 'admin':
-    # code...
-    break;
-  case 'superadmin':
-    # code...
-    break;
-  case 'superadmin2':
-    # code...
-    break;
-  
-  default:
-    # code...
-    include("salir.php");
-    break;
-}
 
-;?>
 <div class="content-wrapper">
 
   <section class="content-header">

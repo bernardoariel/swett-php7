@@ -249,6 +249,9 @@ $(".tablaProductos tbody").on("click", "button.btnEditarProducto", function(){
               
           })
 
+
+          $("#idProductoEditar").val(idProducto);
+
            $("#editarCodigo").val(respuesta["codigo"]);
 
            $("#editarNombre").val(respuesta["nombre"]);
@@ -299,4 +302,223 @@ $(".tablaProductos tbody").on("click", "button.btnEliminarProducto", function(){
 	})
 
 })
-	
+$('#nuevoCodigo').on('change', function(e){
+  
+ /*  var datos = new FormData();
+  datos.append("bsqCodigoCrear", true);
+  datos.append("codigo", $('#nuevoCodigo').val());
+
+  $.ajax({
+
+    url:"ajax/productos.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    
+    success:function(respuesta){
+
+    }
+}) */
+})
+//creo variables para dejar acentado si el valor es aceptado
+let valorNombreCrear = false
+let valorCodigoCrear = true
+
+$('#nuevoNombre').on('change', function(e){
+  console.log($('#nuevoNombre').val())
+  var datos = new FormData();
+  datos.append("bsqNombreCrear", true);
+  datos.append("nombre", $('#nuevoNombre').val());
+
+  $.ajax({
+
+    url:"ajax/productos.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    
+    success:function(respuesta){
+      console.log(respuesta)
+      if(respuesta=='nuevoNombre'){
+
+        $('#errNombreCrear').html('Este NOMBRE ya se encuentra en la bd')
+        $(this).select()
+        $(this).focus()
+        
+        valorNombreCrear = true
+
+      }else{
+
+        $('#errNombreCrear').html('')
+        
+        valorNombreCrear = true
+      }
+      console.log("desde nuevoCodigo nom",valorCodigoCrear)
+      console.log("desde nuevoNombre nom",valorNombreCrear)
+      if(valorCodigoCrear == false || valorNombreCrear== false){
+      
+        $('#btnGuardarCrearProducto').prop('disabled', true);
+        
+      }else{
+        $('#btnGuardarCrearProducto').prop('disabled', false);
+      }
+
+    }
+
+  })
+  
+})
+$('#nuevoCodigo').on('change', function(e){
+  
+  var datos = new FormData();
+  datos.append("bsqCodigoCrear", true);
+  datos.append("codigo", $('#nuevoCodigo').val());
+
+  $.ajax({
+
+    url:"ajax/productos.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    
+    success:function(respuesta){
+      console.log(respuesta)
+      if(respuesta=='nuevoCodigo'){
+
+        $('#errCodigoCrear').html('Este CODIGO ya se encuentra en la bd')
+        $(this).select()
+        $(this).focus()
+        
+        valorCodigoCrear =true
+      }else{
+
+        $('#errCodigoCrear').html('')
+        
+        valorCodigoCrear = true
+      }
+
+      console.log("desde nuevoCodigo cod",valorCodigoCrear)
+      console.log("desde nuevoNombre cod",valorNombreCrear)
+
+      if(valorCodigoCrear == false || valorNombreCrear== false){
+
+        $('#btnGuardarCrearProducto').prop('disabled', true);
+
+      }else{
+
+        $('#btnGuardarCrearProducto').prop('disabled', false);
+        
+      }
+
+    }
+
+  })
+
+})
+//creo variables para dejar acentado si el valor es aceptado
+let valorNombreEditar = true
+let valorCodigoEditar = true
+
+$('#editarNombre').on('change', function(e){
+  console.log($('#editarNombre').val())
+  var datos = new FormData();
+  datos.append("bsqNombreEditar", true);
+  datos.append("nombre", $('#editarNombre').val());
+
+  $.ajax({
+
+    url:"ajax/productos.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    
+    success:function(respuesta){
+      console.log(respuesta)
+      if(respuesta=='editarNombre'){
+
+        $('#errNombreEditar').html('Este NOMBRE ya se encuentra en la bd')
+        $(this).select()
+        $(this).focus()
+        
+        valorNombreEditar = true
+      }else{
+
+        $('#errNombreEditar').html('')
+        
+        valorNombreEditar = true
+      }
+      console.log("desde nuevoCodigo nom",valorCodigoEditar)
+      console.log("desde nuevoNombre nom",valorNombreEditar)
+      if(valorCodigoEditar == false || valorNombreEditar== false){
+      
+        $('#btnGuardarEditarProducto').prop('disabled', true);
+        
+      }else{
+
+        $('#btnGuardarEditarProducto').prop('disabled', false);
+
+      }
+
+    }
+
+  })
+  
+})
+$('#editarCodigo').on('change', function(e){
+  
+  var datos = new FormData();
+  datos.append("bsqCodigoEditar", true);
+  datos.append("codigo", $('#editarCodigo').val());
+
+  $.ajax({
+
+    url:"ajax/productos.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    
+    success:function(respuesta){
+      console.log(respuesta)
+      if(respuesta=='editarCodigo'){
+
+        $('#errCodigoEditar').html('Este CODIGO ya se encuentra en la bd')
+        $(this).select()
+        $(this).focus()
+        
+        valorCodigoEditar =true
+      }else{
+
+        $('#errCodigoEditar').html('')
+        
+        valorCodigoEditar = true
+      }
+
+      console.log("desde editarCodigo cod",valorCodigoEditar)
+      console.log("desde editarNombre cod",valorNombreEditar)
+
+      if(valorCodigoEditar == false || valorNombreEditar== false){
+
+        $('#btnGuardarEditarProducto').prop('disabled', true);
+
+      }else{
+
+        $('#btnGuardarEditarProducto').prop('disabled', false);
+
+      }
+
+    }
+
+  })
+
+})
+

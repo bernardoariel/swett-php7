@@ -1,0 +1,5 @@
+1.modificar en sweet Clientes NJ.php linea 68 if($value['id']!=1){
+2.modificar en swwet ajax/datatable-clientes.ajax.php if($clientes[$i]['id']!=1){ dentro del for
+3.chequear por  que no anda el plugin de clientesnj.php
+4.ALTER TABLE `backup` CHANGE `datos` `datos_viejos` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+5.ALTER TABLE `backup` ADD `datos_nuevos` TEXT NULL DEFAULT NULL AFTER `datos_viejos`;

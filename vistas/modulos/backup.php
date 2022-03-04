@@ -2,8 +2,7 @@
 switch ($_SESSION['usuario']) {
   case 'admin':
     break;
-  case 'stock':
-      break; 
+
   default:
     include "404.php";
     exit;
@@ -17,7 +16,7 @@ switch ($_SESSION['usuario']) {
     
     <h1>
       
-      Administrar categorías
+      Administrar Backups
     
     </h1>
 
@@ -25,7 +24,7 @@ switch ($_SESSION['usuario']) {
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Administrar categorías</li>
+      <li class="active">Administrar Backups</li>
     
     </ol>
 
@@ -34,16 +33,6 @@ switch ($_SESSION['usuario']) {
   <section class="content">
 
     <div class="box">
-
-      <div class="box-header with-border">
-  
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCategoria">
-          
-          Agregar categoría
-
-        </button>
-
-      </div>
 
       <div class="box-body">
         
@@ -54,11 +43,11 @@ switch ($_SESSION['usuario']) {
          <tr>
            
            <th style="width:10px">#</th>
-           <th>Categoria</th>
-           <th>Prefijo</th>
-           <th>Ultimo-Numero</th>
-           <th style="width:50px">Tiene Movimiento?</th>
-           <th style="width:50px">Acciones</th>
+           <th>Tabla</th>
+           <th>Modificacion</th>
+           <th>Datos Viejos</th>
+           <th>Datos Nuevos</th>
+           <th>Usuario || FECHA</th>
 
          </tr> 
 
@@ -71,33 +60,87 @@ switch ($_SESSION['usuario']) {
           $item = null;
           $valor = null;
 
-          $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
+          $backups = ControladorBackups::ctrMostrarBackups($item, $valor);
 
-          foreach ($categorias as $key => $value) {
+          foreach ($backups as $key => $value) {
            
-            echo ' <tr>
+            echo '<tr>
 
                     <td>'.($key+1).'</td>
-
-                    <td class="text-uppercase">'.$value["categoria"].'</td>';
+                    <td class="text-uppercase">'.$value["tabla"].'</td>';
             
-             echo   '<td class="text-uppercase">'.$value["prefijo"].'</td>';
-             echo   '<td class="text-uppercase">'.$value["numero"].'</td>';
-             echo   '<td class="text-uppercase">'.$value["movimiento"].'</td>';
+            echo   '<td class="text-uppercase">'.$value["tipo"].'</td>';
+             
+            $datosViejos =  json_decode($value["datos_viejos"], true);
+            $datosNuevos =  json_decode($value["datos_nuevos"], true);
+
+            switch ($value["tabla"]) {
+              case 'productos':
+               
+                if($value["tipo"]=='UPDATE'){
+                  if($datosNuevos['codigo']!=$datosViejos['codigo']){
+                    $class_codigo="class='text-danger'";
+                  }else{$class_codigo="class=''";
+                  }
+                  if($datosNuevos['nombre']!=$datosViejos['nombre']){$class_nombre="class='text-danger'";}else{$class_nombre="class=''";}
+                  if($datosNuevos['stock']!=$datosViejos['stock']){$class_stock="class='text-danger'";}else{
+                    echo $datosNuevos['stock'];
+                    $class_stock="class=''";}
+                  if($datosNuevos['precio_venta']!=$datosViejos['precio_venta']){$class_precio_venta="class='text-danger'";}else{$class_precio_venta="class=''";}
+                  $tablaNViejos = "
+                    <ul>
+                      <li ".$class_codigo.">Codigo: ".$datosViejos['codigo']."</li>
+                      <li ".$class_nombre.">Nombre: ".$datosViejos['nombre']."</li>
+                      <li ".$class_stock.">Stock: ".$datosViejos['stock']."</li>
+                      <li ".$class_precio_venta.">Precio:".$datosViejos['precio_venta']."</li>
+                    </ul>";
+                  $tablaNuevos = "
+                    <ul>
+                      <li ".$class_codigo.">Codigo: ".$datosNuevos['codigo']."</li>
+                      <li ".$class_nombre.">Nombre: ".$datosNuevos['nombre']."</li>
+                      <li ".$class_stock.">Stock: ".$datosNuevos['stock']."</li>
+                      <li ".$class_precio_venta.">Precio:".$datosNuevos['precio_venta']."</li>
+                    </ul>";
+                }elseif ($value["tipo"]=='ELIMINAR') {
+                  $tablaNViejos = "
+                  <ul>
+                    <li>Codigo: ".$datosViejos['codigo']."</li>
+                    <li>Nombre: ".$datosViejos['nombre']."</li>
+                    <li>Stock: ".$datosViejos['stock']."</li>
+                    <li>Precio:".$datosViejos['precio_venta']."</li>
+                  </ul>";
+                $tablaNuevos = "
+                  <ul>
+                    <li>Id: ".$datosNuevos['id']."</li>
+                  </ul>";
+                }
+                break;
+                case 'ventas':
+                  if($value["tipo"]=='ELIMINAR') {
+                    $tablaNViejos = "
+                    <ul>
+                      <li>Fecha: ".$datosViejos['fecha']."</li>
+                      <li>Codigo: ".$datosViejos['codigo']."</li>
+                      <li>Productos: ".$datosViejos['productos']."</li>
+                      <li>Precio:".$datosViejos['total']."</li>
+                      <li>Pago:".$datosViejos['referenciapago']."</li>
+                    </ul>";
+                  $tablaNuevos = "
+                    <ul>
+                      <li>Id: ".$datosNuevos['id']."</li>
+                    </ul>";
+                  }
+                  break;
+              default:
+                # code...
+                break;
+            }
+			 	  
+             echo   '<td class="text-uppercase">'.$tablaNViejos.'</td>';
+             echo   '<td class="text-uppercase">'.$tablaNuevos.'</td>';
+             echo   '<td class="text-uppercase"><small>'.$value['fechacreacion'].'||'.$value['usuario'].'</small></td>';
            
-             echo      '<td>
-
-                      <div class="btn-group">
-                          
-                        <button class="btn btn-warning btnEditarCategoria" idCategoria="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarCategoria" title ="editar categoria"><i class="fa fa-pencil"></i></button>';
-
-                       
-
-             echo '<button class="btn btn-danger btnEliminarCategoria" idCategoria="'.$value["id"].'" title ="eliminar categoria"><i class="fa fa-times"></i></button></div>  
-
-                    </td>
-
-                  </tr>';
+             echo '</tr>';
           }
 
         ?>

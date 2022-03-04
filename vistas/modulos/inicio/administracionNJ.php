@@ -386,7 +386,7 @@ $ventasCant = ControladorVentas::ctrContarVentas($item,$valor);
        <h3>Copia Seguridad</h3>
 
        <p>Copia de Seguridad</p>
-       <small> <p id="ultimaBd">Ultima: <button class="btn-link" id="verUltimaBd">Ver</button>  <a href="nube" style="color:#FFF">Nube <i class="fa fa-cloud"></i></a> </p></small>
+       <small> <p id="ultimaBd">Ultima: <?php echo $ultimaFechaActualizacion['fecha'];  ?><!-- <button class="btn-link" id="verUltimaBd">Ver</button>  <a href="nube" style="color:#FFF">Nube <i class="fa fa-cloud"></i></a> --> </p></small>
       
       
       </div>

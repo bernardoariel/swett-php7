@@ -21,7 +21,7 @@ class TablaClientes{
 		for($i = 0; $i < count($clientes); $i++){
 			
 			if($clientes[$i]['id']!=1){
-
+				
 				$botones ="<div class='btn-group'><button class='btn btn-warning btnEditarCliente' data-toggle='modal' data-target='#modalEditarCliente' idCliente='".$clientes[$i]['id']."'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarCliente' idCliente='".$clientes[$i]['id']."'><i class='fa fa-times'></i></button></div>";
 
 				$datosJson .='[

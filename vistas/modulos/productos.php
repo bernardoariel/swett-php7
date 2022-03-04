@@ -1,22 +1,15 @@
 <?php
 switch ($_SESSION['usuario']) {
   case 'admin':
-    # code...
     break;
-  case 'vendedor':
-    # code...
-    break;
-  case 'superadmin2':
-    # code...
-    break;
-  
+  case 'stock':
+      break; 
   default:
-    # code...
-    include("salir.php");
+    include "404.php";
+    exit;
     break;
 }
-
-;?>
+?>
 
 <div class="content-wrapper">
 
@@ -100,7 +93,7 @@ MODAL AGREGAR PRODUCTO
 
     <div class="modal-content">
 
-      <form role="form" method="post">
+      <form role="form" method="post" id="formProductosCrear">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -167,6 +160,8 @@ MODAL AGREGAR PRODUCTO
 
               </div>
 
+              <p class="text-danger"><small id="errCodigoCrear"></small></p> 
+
             </div>
 
             <!-- ENTRADA PARA LA nOMBRE -->
@@ -178,10 +173,11 @@ MODAL AGREGAR PRODUCTO
                 <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span> 
 
                 <input type="text" class="form-control input-lg" id="nuevoNombre" name="nuevoNombre" placeholder="Ingresar el nombre del producto" autocomplete="off" required>
-
+                 
                 <input type="hidden" id="nuevoCodigoNumero" name="nuevoCodigoNumero">
 
               </div>
+              <p class="text-danger"><small id="errNombreCrear"></small></p> 
 
             </div>
 
@@ -304,7 +300,7 @@ MODAL AGREGAR PRODUCTO
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar producto</button>
+          <button type="submit" class="btn btn-primary" id="btnGuardarCrearProducto" disabled>Guardar producto</button>
 
         </div>
 
@@ -333,7 +329,7 @@ MODAL EDITAR PRODUCTO
 
     <div class="modal-content">
 
-      <form role="form" method="post" enctype="multipart/form-data">
+      <form role="form" method="post" enctype="multipart/form-data" id="formEditarProductos">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -363,6 +359,8 @@ MODAL EDITAR PRODUCTO
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                <input type="hidden" name="idProductoEditar" id="idProductoEditar">
 
                <select class="form-control input-lg" id="editarCategoria" name="editarCategoria" title="seleccione una categoría" required>
                   
@@ -394,10 +392,10 @@ MODAL EDITAR PRODUCTO
               
                 <span class="input-group-addon"><i class="fa fa-code"></i></span> 
 
-                <input type="text" class="form-control input-lg" id="editarCodigo" name="editarCodigo" autocomplete="off" required readonly title="codigo del producto,este campo no se puede editar">
+                <input type="text" class="form-control input-lg" id="editarCodigo" name="editarCodigo" autocomplete="off" required  title="codigo del producto,este campo no se puede editar">
 
               </div>
-
+              <p class="text-danger"><small id="errCodigoEditar"></small></p> 
             </div>
 
             <!-- ENTRADA PARA LA nOMBRE -->
@@ -411,6 +409,7 @@ MODAL EDITAR PRODUCTO
                 <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" autocomplete="off" title="nombre del producto" required>
 
               </div>
+              <p class="text-danger"><small id="errNombreEditar"></small></p> 
 
             </div>
 
@@ -523,7 +522,7 @@ MODAL EDITAR PRODUCTO
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+          <button type="submit" class="btn btn-primary" id="btnGuardarEditarProducto">Guardar cambios</button>
 
         </div>
 

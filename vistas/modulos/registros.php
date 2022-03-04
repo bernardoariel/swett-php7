@@ -1,22 +1,15 @@
 <?php
 switch ($_SESSION['usuario']) {
   case 'admin':
-    # code...
     break;
-  case 'superadmin':
-    # code...
-    break;
-  case 'superadmin2':
-    # code...
-    break;
-  
+  case 'stock':
+      break; 
   default:
-    # code...
-    include("salir.php");
+    include "404.php";
+    exit;
     break;
 }
-
-;?>
+?>
 
 <div class="content-wrapper">
 

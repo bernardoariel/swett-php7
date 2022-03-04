@@ -171,6 +171,8 @@ CUERPO DOCUMENTO
          $_GET["ruta"] == "ctacorriente" ||
          $_GET["ruta"] == "informes" ||
          $_GET["ruta"] == "respaldo" ||
+         $_GET["ruta"] == "backup" ||
+         $_GET["ruta"] == "serverbk" ||
          
          
          $_GET["ruta"] == "buscar-venta-cliente" ||

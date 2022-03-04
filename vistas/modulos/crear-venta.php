@@ -435,16 +435,14 @@ foreach ($clientes as $key => $value) {
 
 
 <!-- Modal -->
-
+<div id="myModalProductos" class="modal fade " role="dialog">
   
-<div id="myModalProductos" class="modal fade" role="dialog">
-  
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <!-- Modal content-->
     
     <div class="modal-content">
       
-      <div class="modal-header">
+      <div class="modal-header bg-primary">
         
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         
@@ -507,12 +505,12 @@ foreach ($clientes as $key => $value) {
         <table id="buscararticulotabla" class="table table-bordered table-striped tablaBuscarProductos">
          <thead>
           <tr>
-            <th width="10">id</th>
-            <th>nombre</th>
-            <th>codigo</th>
-            <!-- <th>detalle</th> -->
-            <th>stock</th>
-            <th>precio</th>
+           
+            <th width="200">nombre</th>
+            <th width="80">codigo</th>
+            <th width="200">detalle</th>
+            <th width="50">stock</th>
+            <th width="100">precio</th>
             <th>opciones</th>
           </tr>
          </thead>
@@ -533,9 +531,9 @@ foreach ($clientes as $key => $value) {
         if ($value["stock"]<0){ $stock= '<td style="color:red">'.$value["stock"].'</td>'; }
 
           echo ' <tr>
-                  <td>'.($key+1).'</td>
+                  
                   <td>'.$value["nombre"].'</td>
-                  <td>'.$value["codigo"].'</td>';
+                  <td>'.$value["codigo"].'</td><td>'.$value["descripcion"].'</td>';
                   
               echo $stock;    
           echo '  <td>'.$value["precio_venta"].'</td>';

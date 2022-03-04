@@ -130,22 +130,21 @@ class ControladorProductos{
 			   preg_match('/^[0-9.]+$/', $_POST["editarStock"]) &&	
 			   preg_match('/^[0-9.]+$/', $_POST["editarPrecioVenta"])){
 
-		   		
-
 				$tabla = "productos";
-
+				
 				$datos = array("id_categoria" => $_POST["editarCategoria"],
+							   "id" => $_POST["idProductoEditar"],
 							   "codigo" => trim($_POST["editarCodigo"]),
 							   "nombre" => trim(strtoupper($_POST["editarNombre"])),
 							   "descripcion" => trim(strtoupper($_POST["editarDescripcion"])),
 							   "stock" => trim($_POST["editarStock"]),
-							   "precio_compra" => trim($_POST["editarPrecioCompra"]),
+							   "precio_compra" => (!isset($_POST["editarPrecioCompra"]))? 0 : $_POST["editarPrecioCompra"],
 							   "precio_venta" => trim($_POST["editarPrecioVenta"]));
-
-				ControladorProductos::ctrbKProductos($tabla, "codigo", $_POST["editarCodigo"], "UPDATE");
+				
+				ControladorProductos::ctrbKProductos($tabla, "codigo", $datos, "UPDATE");
 
 				$respuesta = ModeloProductos::mdlEditarProducto($tabla, $datos);
-
+				
 				if($respuesta == "ok"){
 
 					echo'<script>
@@ -207,7 +206,9 @@ class ControladorProductos{
 				rmdir('vistas/img/productos/'.$_GET["codigo"]);
 
 			}
-			ControladorProductos::ctrbKProductos($tabla, "id", $_GET["idProducto"], "ELIMINAR");
+			$datos2 = array('id' => $_GET["idProducto"]);
+
+			ControladorProductos::ctrbKProductos($tabla, "id", $datos2, "ELIMINAR");
 
 			$respuesta = ModeloProductos::mdlEliminarProducto($tabla, $datos);
 
@@ -308,35 +309,34 @@ class ControladorProductos{
 
 	}
 
-	static public function ctrbKProductos($tabla, $item, $valor,$tipo){
-
-			#TRAEMOS LOS DATOS DE IDESCRIBANO
-			
-			$respuesta = ControladorProductos::ctrMostrarProductos($item, $valor,"id");
-			
-
-			$valor='[{"id":"'.$respuesta[0].'",
-					  "nombre":"'.$respuesta[1].'",
-					  "descripcion":"'.$respuesta[2].'",
-					  "codigo":"'.$respuesta[3].'",
-					  "nrocomprobante":"'.$respuesta[4].'",
-					  "cantventa":"'.$respuesta[5].'",
-					  "id_rubro":"'.$respuesta[6].'",
-					  "cantminima":"'.$respuesta[7].'",
-					  "stock":"'.$respuesta[8].'",
-					  "precio_compra":"'.$respuesta[9].'",
-					  "precio_venta":"'.$respuesta[10].'",
-					  "ventas":"'.$respuesta[11].'",
-					  "obs":"'.$respuesta[12].'",
-					  "iva":"'.$respuesta[13].'"}]';
+	static public function ctrbKProductos($tabla, $item, $datos,$tipo){
+			//tomo los datos de los viejos
+			$datos_nuevos = $datos;
+			#TRAEMOS LOS DATOS DE LOS PRODUCTOS
+			$respuesta = ControladorProductos::ctrMostrarProductos($item, $datos[$item],"id");
+		
+			$datos_viejos=array(
+				"id_categoria"=>$respuesta['id_categoria'],
+				"codigo"=>$respuesta['codigo'],
+				"nombre"=>$respuesta['nombre'],
+				"descripcion"=>$respuesta['descripcion'],
+				"stock"=>$respuesta['stock'],
+				"precio_compra"=>$respuesta['precio_compra'],
+				"precio_venta"=>$respuesta['precio_venta'],
+				"ventas"=>$respuesta['ventas'],
+				"obs"=>$respuesta['obs'],
+				"iva"=>$respuesta['iva'],
+				"activo"=>$respuesta['activo'],
+				"obsdel"=>$respuesta['obsdel'],
+				"fecha"=>$respuesta['fecha']);
 
 	        $datos = array("tabla"=>"productos",
 		   				    "tipo"=>$tipo,
-				            "datos"=>$valor,
+				            "datos_viejos"=>json_encode($datos_viejos),
+							"datos_nuevos"=>json_encode($datos_nuevos),
 				        	"usuario"=>$_SESSION['nombre']);
-
 	        $tabla = "backup";
-
+			
 	        $respuesta = ModeloProductos::mdlbKProducto($tabla, $datos);
 	        
 
@@ -363,7 +363,8 @@ class ControladorProductos{
 			$datos = array("id" => $_POST["idProductoDevolucion"],
 						   "stock" => $stock);
 
-				ControladorProductos::ctrbKProductos($tabla, "id", $_POST["idProductoDevolucion"], "UPDATE");
+				
+				// ControladorProductos::ctrbKProductos($tabla, "id", $datos, "UPDATE");
 
 				$respuesta = ModeloProductos::mdlDevolucionProducto($tabla, $datos);
 

@@ -3,21 +3,18 @@ switch ($_SESSION['usuario']) {
   case 'admin':
     # code...
     break;
-  case 'superadmin':
-    # code...
-    break;
+  
   case 'superadmin2':
     # code...
     break;
   
   default:
     # code...
-    include("salir.php");
+    include "404.php";
+    exit;
     break;
 }
-
-;?>
-
+?>
 <div class="content-wrapper">
 
   <section class="content-header">
@@ -234,6 +231,8 @@ MODAL AGREGAR USUARIO
 
                   <option value="Administrador">Administrador</option>
 
+                  <option value="Stock">Stock</option>
+
                   <!-- <option value="Administrativo">Administrativo</option>
 
                   <option value="Tecnico">Tecnico</option> -->
@@ -384,6 +383,8 @@ MODAL EDITAR USUARIO
                   <!-- <option value="Administrativo">Administrativo</option>
 
                   <option value="Especial">Especial</option> -->
+
+                  <option value="Stock">Stock</option>
 
                   <option value="Vendedor">Vendedor</option>
 

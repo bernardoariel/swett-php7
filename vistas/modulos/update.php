@@ -13,10 +13,10 @@ $dia = date('l', strtotime($fecha));
 $dias_ES = array("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo");
 $dias_EN = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
 $nombredia = str_replace($dias_EN, $dias_ES, $dia);
-define("DB_USER", 'root');
-define("DB_PASSWORD", 'Bgtoner123456');
-define("DB_NAME", 'sweet');
-define("DB_HOST", '66.97.35.109');
+define("DB_USER", 'sistem_sweet');
+define("DB_PASSWORD", 'Bgtoner135790');
+define("DB_NAME", 'sistem_sweet');
+define("DB_HOST", '66.97.41.81');
 define("BACKUP_DIR", 'vistas/respaldos'); // Comment this line to use same script's directory ('.')
 define("BACKUP_FILE", strtolower($nombredia).'.sql.gz'); // Script will autodetect if backup file is gzipped based on .gz extension
 define("CHARSET", 'utf8');

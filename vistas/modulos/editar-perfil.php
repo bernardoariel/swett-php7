@@ -1,4 +1,16 @@
 <?php
+switch ($_SESSION['usuario']) {
+  case 'admin':
+    break;
+
+  default:
+    include "404.php";
+    exit;
+    break;
+}
+?>
+
+<?php
 $item = 'id';
 $valor = $_SESSION['id'];
 

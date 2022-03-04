@@ -25,25 +25,39 @@
     <div class="row">
       
     <?php
+      $ultimaFechaActualizacion = ControladorEnlace::ctrUltimoId('modificaciones','id');
+      if(is_null($ultimaFechaActualizacion)){
+        
+        $colorCaja ='bg-red';
 
+      }else{
+        
+        $colorCaja ='bg-aqua';
+          
+      }
       switch ($_SESSION["perfil"]) {
             
             case 'Administrador':
               # code...
               include "inicio/".$inicio;
               break;
-            case 'Administrativo':
-              # code...
-              include "inicio/".$inicio2;
-              break;
+            // case 'Administrativo':
+            //   # code...
+            //   include "inicio/".$inicio2;
+            //   break;
             case 'Vendedor':
               # code...
               include "inicio/".$inicio2;
               break;
-            case 'Tecnico':
-              # code...
-               include "reportes/caja-tecnico.php";
-              break;
+
+            case 'Stock':
+                # code...
+                include "inicio/".$inicio2;
+                break;
+            // case 'Tecnico':
+            //   # code...
+            //    include "reportes/caja-tecnico.php";
+            //   break;
             
            
           }
@@ -57,6 +71,22 @@
      <div class="row">
        
         <div class="col-lg-8">
+          <?php
+          
+            $respuesta = ControladorCaja::ctrMostrarCaja(null, null); 
+            foreach ($respuesta as $key => $value) {
+              $data = array('id' => $value['id'],
+                            'fecha' => $value['fecha'],
+                            'efectivo' => $value['efectivo'],
+                            'tarjeta' => $value['tarjeta'],
+                            'cheque' => $value['cheque'],
+                            'transferencia' => $value['transferencia'],
+                            'cuenta_corriente' => $value['cuenta_corriente'],
+                            'vale' => $value['vale']
+             );
+             ControladorEnlace::ctrcargarTabla('caja',$data);
+            }
+          ?>
 
           <?php
 

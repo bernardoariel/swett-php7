@@ -426,7 +426,7 @@ copy($nombre_archivo, $nombre_archivo2);
 <script>
   
 $("#backup").hide("slow");
-window.location = "inicio";
+window.location = "index.php?ruta=serverbk&actualizarServer=1";
 
         
 

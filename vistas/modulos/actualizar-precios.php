@@ -1,5 +1,15 @@
+<?php
+switch ($_SESSION['usuario']) {
+  case 'admin':
+    break;
+    
+  default:
+    include "404.php";
+    exit;
+    break;
+}
+?>
 <div class="content-wrapper">
-
   
   <section class="content-header">
     

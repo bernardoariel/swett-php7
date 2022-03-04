@@ -18,11 +18,12 @@
 				</a>
 
 			</li>
-
+			
 			<!--=====================================
 			=            ADMINISTRADOR            =
 			======================================-->
 			<?php 
+			
 
 			 $item = "nombre";
              $valor = "JSON";
@@ -46,7 +47,7 @@
              	$caja = 'cajaNJ';
              	$inicio2 = 'cajas-superioresNJ.php';
              }
-
+			
 			if($_SESSION['perfil']=="Administrador"){
 
 
@@ -107,6 +108,17 @@
 
 									<i class="fa fa-free-code-camp"></i>
 									<span>Iniciar Stock a Cero</span>
+
+								</a>
+
+							</li>
+
+							<li>
+
+								<a href="backup">
+
+									<i class="fa fa-server"></i>
+									<span>Ver Backups</span>
 
 								</a>
 
@@ -397,6 +409,154 @@ echo '
 				</li>';
 			}
 			
+	 
+
+			if($_SESSION['perfil']=="Stock"){
+
+
+				
+		
+			echo '<li class="treeview">
+
+						<a href="#">
+
+							<i class="fa fa-dropbox"></i>
+						
+							<span>Productos</span>
+						
+							<span class="pull-right-container">
+							
+								<i class="fa fa-angle-left pull-right"></i>
+
+							</span>
+
+						</a>
+
+						<ul class="treeview-menu">
+
+							<li>
+
+								<a href="'.$productos.'">
+
+									<i class="fa fa-product-hunt"></i>
+									<span>Productos</span>
+
+								</a>
+
+							</li>
+							<li>';
+							
+							
+echo '
+							<li>
+
+								<a href="categorias">
+
+									<i class="fa fa-th"></i>
+									<span>Categorías</span>
+
+								</a>
+
+							</li>
+
+							
+						</ul>
+
+					</li>
+
+
+			
+			<li>
+
+				<a href="'.$clientes.'">
+
+					<i class="fa fa-users"></i>
+					<span>Clientes</span>
+
+				</a>
+
+			</li>';
+			
+			echo '
+			<li>
+
+				<a href="'.$caja.'">
+
+					<i class="fa fa-usd"></i>
+					<span>Caja <span class="label label-danger">F7</span></span>
+
+				</a>
+
+			</li>';	
+
+			echo '<li class="treeview">
+
+					<a href="#">
+
+						<i class="fa fa-list-ul"></i>
+						
+						<span>Ventas</span>
+						
+						<span class="pull-right-container">
+						
+							<i class="fa fa-angle-left pull-right"></i>
+
+						</span>
+
+					</a>
+
+					<ul class="treeview-menu">
+						
+						<li>
+
+							<a href="ventas">
+								
+								<i class="fa fa-table"></i>
+								<span>Admin. ventas  <span class="label label-success">F10</span></span>
+
+							</a>
+
+						</li>
+
+						<li>
+
+							<a href="crear-venta">
+								
+								<i class="fa fa-file"></i>
+								<span>Crear venta <span class="label label-success">F4</span></span>
+
+							</a>
+
+						</li>
+
+						<li>
+
+							<a href="ctacorriente">
+								
+								<i class="fa fa-spinner"></i>
+								<span>Cta Corriente</span>
+
+							</a>
+
+						</li>
+						<li>
+
+							<a href="presupuestos">
+								
+								<i class="fa fa-file"></i>
+								<span>Presupuestos</span>
+
+							</a>
+
+						</li>
+						
+
+					</ul>
+
+				</li>';
+			}
+
+		
 			
 			?>
 			
